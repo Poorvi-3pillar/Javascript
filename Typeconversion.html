@@ -7,10 +7,38 @@
     <title>Document</title>
 </head>
 <body>
-    <h1></h1>
+    <h2>JavaScript Type Conversions</h2>
+
+<p id="demo"></p>
     <script>
         let x ="abc"
         console.log(+x);
+        document.getElementById("demo").innerHTML =
+(5 + null) + "<br>"  +
+("5" + null) + "<br>" +
+("5" + 3) + "<br>" +
+("5" - 2) + "<br>" +
+("5" * "2") + "<br>" +
+("5" / "2") + "<br>";
+let a = 16 + 4 + "Volvo";
+let y = "Volvo" + 16 + 4;
+console.log(false-1)
+
+console.log('2'-1)
+
+typeof {}
+
+// if a>10 ,  print "100".  ,  
+// else if a >5 && a<=10 print "50" ,   
+// else in other cases , print "0"
+
+
+console.log(a>10?clg(100): a>5 && a<=10 ? clg(50) : clg(0));
+
+// {a:1} == {a:1}
+// {a:1} === {a:1}
+document.getElementById("demo").innerHTML = y;
+con
     </script>
 </body>
 </html>
