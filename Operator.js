@@ -28,3 +28,7 @@ if (x === undefined) {
   // these statements do not execute
   console.log("NO");
 }
+const tag = value[Symbol.toStringTag];
+if (typeof tag === "string") {
+  return tag;
+}

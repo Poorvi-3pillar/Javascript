@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hoisting</title>
+</head>
+<body>
+ <script>
+    console.log(sum(2,3))
+function sum(num, num2) {
+    return num + num2
+}
+// // cannot access sum2 before initialization
+// console.log(sum2(2,3))
+// const sum2 = function(num1, num2) {
+//     return num1 + num2
+//   }
+
+
+// console.log(sumNumbers(2,3))// cannot access sumnumbers before initialization
+// const sumNumbers = (num, num2) => num + num2
+
+
+greet();
+function greet() {
+  console.log("hey!");
+  console.log(add(10, 2));
+  //cannot access multiply before initialization
+//   console.log(multiply(10, 2));
+//cannot access adnew before initialization
+  console.log(addNew(50, 5));
+}
+
+function add(a, b) {
+  return a + b;
+}
+
+const multiply = (x, y) => {
+  return x * y;
+};
+
+const addNew = (a, b) => a + b;
+
+ </script>
+
+</body>
+</html>

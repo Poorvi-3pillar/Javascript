@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Operator</title>
+</head>
+<body>
+    <script>
+        console.log(false || (true && false)); //false
+        console.log(true || (1 + 2));// true
+        console.log((1 + 2) || true);//3
+        console.log(true && (1 + 2));//3
+        console.log(false && (1 + 2));//false
+        console.log((1 + 2) && true);//true
+        //this one
+        console.log((32 * 4) >= 129);
+        // console.log(1 < 2 < 3);
+        // This equals true, which feels like it makes sense as 1 is less than, 2 and 2 is less than 3...
+        // console.log(3 > 2 > 1);
+        // However this equals false
+        //1<2<3 = (1<2)<3 = (true)<3 = (1)<3 = true
+
+        // 3>2>1 = (3>2)>1 = (true)>1 = (1)>1 = false
+
+
+        console.log(false !== !true); // false as  console.log(false === !true); return true
+        console.log(true === 4);//false data types don't match
+        console.log(false === (847 === '847'));// true as in brackets the data types of numer and  string doen't match so false === false is true
+        console.log(false === (847 == '847'));// the inner on  comes true as both the values are same  so true === false  gives false
+        console.log((!true || (!(100 / 5) === 20) || ((328 / 4) === 82)) || false);//it'll return true as the (328/4)===82 is true
+    </script>
+
+</body>
+</html>

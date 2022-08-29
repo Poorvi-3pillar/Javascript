@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>closure</title>
+</head>
+<body>
+    <h1>closure</h1>
+    <script>
+    
+    const sayHello = greet("hello");
+    const sayHey = greet("hey");
+
+    console.log(sayHello("john"));
+    console.log(sayHello("joe"));
+    console.log(sayHey("max"));
+
+    function greet(greet = "") {
+    return function (name) {
+    return `${greet} ${name}!`;
+    };
+    } 
+
+    //
+        function makeAdder(x) {
+    return function (y) {
+        return x + y;
+    };
+    }
+
+    const add5 = makeAdder(5);
+    const add10 = makeAdder(10);
+
+    console.log(add5(2));
+    console.log(add10(2))
+// Example
+    function abc(name)
+    {
+        return function info(phone)
+        {
+            return `${name} ${phone}`
+        }
+
+    }
+    const person=abc('nom');
+    console.log(person(1234));
+        </script>
+</body>
+</html>
