@@ -90,3 +90,9 @@ console.log(name.reverse());
 const months = ['Jan', 'March', 'April', 'June'];
 months.splice(3, 2, 'May');
 console.log(months);
+
+",,," == Array((null,'cool',false,NaN,4));
+new Array([],null,undefined,null) == ",,,";
+const c = [1,2,3];
+let d=c.slice(0)
+console.log(d[1]);
