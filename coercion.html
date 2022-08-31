@@ -11,9 +11,10 @@
     <script>
         console.log(true + false) // both are converted to numer
         console.log('true' == true) //
-        console.log(null == '')
-        console.log(false == 'false')
-        console.log(!!"false" == !!"true")
+        console.log(null == '')//The Null type does not compare as equal to either 1 or +0 
+        //(in fact, null is only comparable to undefined in the Abstract Equality Comparison Algorithm
+        console.log(false == 'false')//
+        console.log(!!"false" == !!"true")//It converts Object to boolean. If it was falsey (e.g., 0, null, undefined, etc.), it would be false, otherwise, true.
         console.log(['x'] == 'x')
         console.log([] + null + 1)
         console.log([1,2,3] == [1,2,3])
@@ -66,6 +67,26 @@
 
 // [[[[[[ undefined ]]]]]] == 0  // true
 // [[[[[[ undefined ]]]]]] == '' // true
+!!false === false
+           !!true === true
+
+              !!0 === false
+!!parseInt("foo") === false // NaN is falsy
+              !!1 === true
+             !!-1 === true  // -1 is truthy
+          !!(1/0) === true  // Infinity is truthy
+
+             !!"" === false // empty string is falsy
+          !!"foo" === true  // non-empty string is truthy
+        !!"false" === true  // ...even if it contains a falsy value
+
+     !!window.foo === false // undefined value is falsy
+      !!undefined === false // undefined primitive is falsy
+           !!null === false // null is falsy
+
+             !!{} === true  // an (empty) object is truthy
+             !![] === true  // an (empty) array is truthy;
+
     </script>
 </body>
 </html>
