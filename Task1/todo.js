@@ -41,22 +41,27 @@ function addTodo(text)
     };
 
     todoItems.push(todo);
-    renderTodo(todo);
+    //changed this 
+    // todoItems.forEach((todo)=>{
+        renderTodo(todo);
+    // });
+    // renderTodo(todo);
 }
 
 
 
 //function to delete each item
-function deleteTodo(id)
+function deleteTodo(idToBeRemoved)
 {
-    const index=todoItems.findIndex(({id})=>id===Number(id));
+
+    const index=todoItems.findIndex(({id})=>id===Number(idToBeRemoved));
     //create an object 
     const todo={
         deleted:true,
         ...todoItems[index]
     };
     //create an array after removing the items 
-    todoItems=todoItems.filter(({id})=>id!==Number(id));
+    todoItems=todoItems.filter(({id})=>id!==Number(idToBeRemoved));
     renderTodo(todo);
 }
 
@@ -111,7 +116,9 @@ deleteall.addEventListener('click',event=>{
 
 
 //function to search
-const searchBox = document.getElementById('searchBox');
+// const searchBox = document.getElementById('searchBox');
+ const searchBox = document.getElementById('todoInput');
+
 //selecting search box
 searchBox.addEventListener('input',()=>{
     //resetting the list 
