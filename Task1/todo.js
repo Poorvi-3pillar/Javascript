@@ -117,7 +117,7 @@ searchBox.addEventListener('input',()=>{
     //resetting the list 
     list.innerHTML="";
     const valueToBeSearched=searchBox.value.trim();
-    todoItems.map(item=>{
+    todoItems.forEach(item=>{
         //destructuring the object 
         const {text} = item;
         if(text.includes(valueToBeSearched)){
