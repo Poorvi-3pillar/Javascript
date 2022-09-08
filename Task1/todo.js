@@ -3,29 +3,36 @@ let todoItems = [];
 // This function will create a new todo object with text input, 
 //check to see which task is completed and id for remove
 
-
 // Render the todo items
 function renderTodo(todo)
 {
     const list=document.querySelector("#todoList");
+    //select item which todo-id matches
     const item=document.querySelector(`[todo-id='${todo.id}']`);
-
+    //delete the item
     if(todo.deleted)
     {
         item.remove();
         return
     }
+
     const node=document.createElement("li");
+    //create attribute as it uniquely define the key
     node.setAttribute('todo-id',todo.id);
+    //creating delelte btn
     const deleteButton =document.createElement("button");
     deleteButton.classList.add('js-delete-todo');
     deleteButton.innerHTML="Delete" 
+    //creating span 
     node.innerHTML = `
     <span>${todo.text}</span>
     `;
+    //appending node and btn
     node.appendChild(deleteButton)
     list.appendChild(node)
 }
+
+//function to add item in an array
 function addTodo(text)
 {
     const todo={
@@ -37,16 +44,24 @@ function addTodo(text)
     renderTodo(todo);
 }
 
+
+
+//function to delete each item
 function deleteTodo(id)
 {
-    const index=todoItems.findIndex(item=>item.id===Number(id));
+    const index=todoItems.findIndex(({id})=>id===Number(id));
+    //create an object 
     const todo={
         deleted:true,
         ...todoItems[index]
     };
-    todoItems=todoItems.filter(item=>item.id!==Number(id));
+    //create an array after removing the items 
+    todoItems=todoItems.filter(({id})=>id!==Number(id));
     renderTodo(todo);
 }
+
+
+
 //Select the form element
 const form = document.querySelector("#todoForm");
 //Add event listener
@@ -58,7 +73,8 @@ add.addEventListener('click',event=>{
     const input=document.querySelector("#todoInput");
     //get value of input and remove whitespaces we can use createNodetext also
     const text=input.value.trim();
-    if(text!=='')
+    //updated from text!=='' to text 
+    if(text)
     {
         addTodo(text);
         //reset value after pushing to ''
@@ -68,54 +84,44 @@ add.addEventListener('click',event=>{
     }
 });
 
+
+
+//selecting the delete button
 const list=document.querySelector('#todoList');
 list.addEventListener('click',event=>{
     if(event.target.classList.contains('js-delete-todo'))
     {
         const itemKey=event.target.parentElement;
         deleteTodo(itemKey.getAttribute('todo-id'));
+        //getattribute gives string in retrun
     }
 });
 
+
+//function to delelte all items
 const deleteall=document.querySelector('.delete-all');
 deleteall.addEventListener('click',event=>{
-    todoItems.splice(0);
+    while(todoItems.length>0)
+    {
+        todoItems.pop();//using pop as it is faster
+    }
+    //todoItem.length=0;
+    //todoItems=[];
 })
 
-const searchBox = document.getElementById('searchBox');
 
+//function to search
+const searchBox = document.getElementById('searchBox');
+//selecting search box
 searchBox.addEventListener('input',()=>{
+    //resetting the list 
     list.innerHTML="";
     const valueToBeSearched=searchBox.value.trim();
-    todoItems.forEach(item=>{
+    todoItems.map(item=>{
+        //destructuring the object 
         const {text} = item;
         if(text.includes(valueToBeSearched)){
             renderTodo(item);
         };
     })
 })
-
-//Second way to do render or display item is
-// function renderTodo() {
-//     var list = document.getElementById('toDoList');
-    
-
-//     for (var i = 0; i < todoItems.length; i++) {
-//         var li = document.createElement('li');
-//         var listItem = li.appendChild(document.createTextNode(todoi[i]));
-//         list.appendChild(listItem);
-//     }
-// }
-
-// function remove(todo)
-// {
-//     const removeTask = document.createElement('input');
-//     removeTask.setAttribute('type', 'button');
-//     removeTask.setAttribute("value", "Remove");
-//     removeTask.setAttribute("id", "removeButton");
-//     removeTask.addEventListener('click', function(e) {
-//         .parentNode.removeChild(node);
-//     }, false);
-//     node.appendChild(removeTask);
-
-// }
