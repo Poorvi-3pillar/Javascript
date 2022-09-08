@@ -42,9 +42,9 @@ function addTodo(text)
 
     todoItems.push(todo);
     //changed this 
-    // todoItems.forEach((todo)=>{
+    todoItems.forEach((todo)=>{
         renderTodo(todo);
-    // });
+    });
     // renderTodo(todo);
 }
 
