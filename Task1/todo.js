@@ -54,14 +54,14 @@ function addTodo(text)
 function deleteTodo(idToBeRemoved)
 {
 
-    const index=todoItems.findIndex(({id})=>id===Number(idToBeRemoved));
+    const todoIndex=todoItems.findIndex(({id})=>id===Number(idToBeRemoved));
     //create an object 
     const todo={
         deleted:true,
-        ...todoItems[index]
+        ...todoItems[todoIndex]
     };
     //create an array after removing the items 
-    todoItems=todoItems.filter(({id})=>id!==Number(idToBeRemoved));
+    todoItems = todoItems.filter(({ id }) => id !== Number(idToBeRemoved));
     renderTodo(todo);
 }
 
@@ -93,10 +93,10 @@ add.addEventListener('click',event=>{
 
 //selecting the delete button
 const list=document.querySelector('#todoList');
-list.addEventListener('click',event=>{
-    if(event.target.classList.contains('js-delete-todo'))
+list.addEventListener('click',({target})=>{
+    if(target.classList.contains('js-delete-todo'))
     {
-        const itemKey=event.target.parentElement;
+        const itemKey=target.parentElement;
         deleteTodo(itemKey.getAttribute('todo-id'));
         //getattribute gives string in retrun
     }
@@ -106,7 +106,7 @@ list.addEventListener('click',event=>{
 //function to delelte all items
 const deleteall=document.querySelector('.delete-all');
 deleteall.addEventListener('click',event=>{
-    while(todoItems.length>0)
+    while(!!todoItems.length)
     {
         todoItems.pop();//using pop as it is faster
     }
@@ -124,9 +124,9 @@ searchBox.addEventListener('input',()=>{
     //resetting the list 
     list.innerHTML="";
     const valueToBeSearched=searchBox.value.trim();
-    todoItems.forEach(item=>{
+    todoItems.forEach(({text})=>{
         //destructuring the object 
-        const {text} = item;
+        // const {text} = item;
         if(text.includes(valueToBeSearched)){
             renderTodo(item);
         };
