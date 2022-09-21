@@ -12,12 +12,12 @@
 
 const root = document.getElementById("root");
 const form = document.getElementById("Form");
-const Post = document.getElementById("btn");
+const post = document.getElementById("btn");
 // const list=document.createDocumentFragment();
 const url = "https://reqres.in/api/users";
-let users = new Array();
+let users = [];
 console.log(users);
-async function Get() {
+async function fetchApi() {
   try {
     const res = await fetch(url);
     //console.log(res);
@@ -26,11 +26,11 @@ async function Get() {
     let persons = data;
     //console.log(data);
     // console.log(persons.data)
-    persons.data.map((values) => {
+    persons.data.map(({first_name,email,avatar}) => {
       users.push({
-        name: values.first_name,
-        email: values.email,
-        img: values.avatar,
+        first_name,
+        email,
+        avatar,
       });
     });
     users.map((ele) => {
@@ -40,7 +40,7 @@ async function Get() {
     console.log(err);
   }
 }
-Get();
+fetchApi();
 
 // diplaying the data
 const displayFn = (ele) => {
@@ -49,9 +49,9 @@ const displayFn = (ele) => {
   card.innerHTML = `<div class="container ">
             <div class="row">
             <div class="col-sm-6">
-                    <img class="card-img-top" src="${ele.img}" altSrc="img">
+                    <img class="card-img-top" src="${ele.avatar}" altSrc="img">
                     <div class="card-body">
-                    <h5 class="card-title">${ele.name}</h5>
+                    <h5 class="card-title">${ele.first_name}</h5>
                     <h5 class="card-title">${ele.email}</h5>
                     </div>
                 </div>
@@ -85,7 +85,7 @@ function createPost() {
   //window.location.href='createPost.html'
   if (form.style.display == "none") {
     form.style.display = "block";
-    Post.style.display = "none";
+    post.style.display = "none";
   }
   
 }
